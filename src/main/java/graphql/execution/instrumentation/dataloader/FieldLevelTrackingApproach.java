@@ -102,6 +102,13 @@ public class FieldLevelTrackingApproach {
             return true;
         }
 
+	    @Override
+	    public String toString() {
+		    return "CallStack{" +
+			    "fieldTrackingPerLevel=" + fieldTrackingPerLevel +
+			    ", dispatchedLevels=" + dispatchedLevels +
+			    '}';
+	    }
     }
 
     public FieldLevelTrackingApproach(Logger log, Supplier<DataLoaderRegistry> dataLoaderRegistrySupplier) {
@@ -176,6 +183,7 @@ public class FieldLevelTrackingApproach {
         CallStack callStack = parameters.getInstrumentationState();
         ResultPath path = parameters.getEnvironment().getExecutionStepInfo().getPath();
         int level = path.getLevel();
+
         return new InstrumentationContext<Object>() {
 
             @Override
